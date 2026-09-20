@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 7 — Organizador de Tarefas</title>
+    <style>
+        :root {
+            --azul: #2c3e50;
+            --azul-escuro: #1a252f;
+            --verde: #27ae60;
+            --verde-escuro: #229954;
+            --laranja: #f39c12;
+            --vermelho: #e74c3c;
+            --cinza: #95a5a6;
+            --fundo: #f4f4f4;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--fundo);
+            display: flex;
+            justify-content: center;
+            padding: 2.5rem 1rem;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 560px;
+            max-width: 100%;
+        }
+
+        h1 { color: var(--azul); text-align: center; margin-top: 0; }
+        .subtitulo { text-align: center; color: #888; margin-top: -0.5rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+        /* === FORMULÁRIO DE ENTRADA === */
+        .linha-entrada {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .linha-entrada input[type="text"] {
+            flex: 1 1 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .linha-entrada input.invalido { border-color: var(--vermelho); }
+
+        .linha-selects {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 0.6rem;
+        }
+        .linha-selects select {
+            flex: 1;
+            padding: 8px;
+            font-size: 0.95rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+        }
+
+        #btn-adicionar {
+            width: 100%;
+            padding: 10px 16px;
+            font-size: 1rem;
+            background: var(--verde);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        #btn-adicionar:hover { background: var(--verde-escuro); }
+
+        #msg-erro {
+            color: var(--vermelho);
+            font-size: 0.85rem;
+            min-height: 1.1rem;
+            margin: 4px 0 1rem;
+        }
+
+        /* === FILTROS === */
+        .filtros {
+            display: flex;
+            gap: 6px;
+            margin: 1.2rem 0 0.8rem;
+        }
+        .filtro {
+            flex: 1;
+            padding: 6px;
+            font-size: 0.85rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #666;
+        }
+        .filtro.ativo {
+            background: var(--azul);
+            border-color: var(--azul);
+            color: white;
+        }
+
+        /* === LISTA === */
+        ul { list-style: none; padding: 0; margin: 0.5rem 0; min-height: 40px; }
+
+        .tarefa {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            border-left: 4px solid var(--cinza);
+            cursor: pointer;
+        }
+        .tarefa:hover { background: #f8f9fa; }
+        .tarefa.prioridade-alta   { border-left-color: var(--vermelho); }
+        .tarefa.prioridade-media  { border-left-color: var(--laranja); }
+        .tarefa.prioridade-baixa  { border-left-color: var(--verde); }
+
+        .tarefa.concluida .texto {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        .tarefa .texto { flex: 1; }
+
+        .tarefa .tag {
+            font-size: 0.75rem;
+            background: #eee;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .btn-remover {
+            background: none;
+            border: none;
+            color: var(--vermelho);
+            font-size: 1.2rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 4px;
+        }
+
+        /* === RODAPÉ === */
+        #contador {
+            text-align: center;
+            color: #888;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Organizador de Tarefas</h1>
+        <p class="subtitulo">Projeto 7 — aplica conceitos dos Projetos 1 a 6</p>
+
+        <!-- ENTRADA: texto + categoria + prioridade -->
+        <div class="linha-entrada">
+            <input type="text" id="texto-tarefa" placeholder="O que você precisa fazer?">
+        </div>
+        <div class="linha-selects">
+            <select id="categoria">
+                <option value="Estudo">Estudo</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Pessoal">Pessoal</option>
+                <option value="Outro">Outro</option>
+            </select>
+            <select id="prioridade">
+                <option value="alta">Prioridade alta</option>
+                <option value="media" selected>Prioridade média</option>
+                <option value="baixa">Prioridade baixa</option>
+            </select>
+        </div>
+        <div id="msg-erro"></div>
+        <button id="btn-adicionar">Adicionar Tarefa</button>
+
+        <!-- FILTROS -->
+        <div class="filtros">
+            <button class="filtro ativo" data-filtro="todas">Todas</button>
+            <button class="filtro" data-filtro="pendentes">Pendentes</button>
+            <button class="filtro" data-filtro="concluidas">Concluídas</button>
+        </div>
+
+        <!-- LISTA: reconstruída inteira a cada mudança, a partir do array "tarefas" -->
+        <ul id="lista"></ul>
+
+        <div id="contador">Nenhuma tarefa ainda</div>
+    </div>
+
+    <script>
+        // ============================================================
+        // PROJETO 7 — ORGANIZADOR DE TAREFAS (esboço de síntese)
+        //
+        // Este projeto combina, de propósito, conceitos dos 6 anteriores:
+        //   - Validação com feedback visual        (Projetos 1 e 4)
+        //   - parseFloat/switch de estado simples   (Projeto 2, aqui como filtro)
+        //   - Estado + função central de renderização (Projeto 3: atualizarDisplay)
+        //   - createElement/appendChild dinâmico     (Projeto 5)
+        //   - Array de objetos como fonte da verdade  (Projeto 6)
+        // E aplica as refatorações sugeridas na análise anterior:
+        //   - const para referências de DOM que nunca mudam
+        //   - Delegação de eventos (1 listener no <ul>, não 1 por tarefa)
+        //   - localStorage para persistir os dados entre recarregamentos
+        // ============================================================
+
+        // ESTADO — fonte única da verdade (como no Projeto 6, mas agora
+        // o DOM NUNCA é lido para saber quantas tarefas existem: ele é só
+        // um reflexo do array "tarefas". Esse é o padrão que frameworks
+        // como React generalizam.)
+        let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+        let filtroAtual = "todas"; // "todas" | "pendentes" | "concluidas"
+
+        // REFERÊNCIAS DO DOM — const, pois nenhuma é reatribuída depois
+        // (Refatoração 4.3 da análise anterior)
+        const inputTexto      = document.getElementById("texto-tarefa");
+        const selectCategoria = document.getElementById("categoria");
+        const selectPrioridade = document.getElementById("prioridade");
+        const btnAdicionar    = document.getElementById("btn-adicionar");
+        const msgErro         = document.getElementById("msg-erro");
+        const listaEl         = document.getElementById("lista");
+        const contadorEl      = document.getElementById("contador");
+        const botoesFiltro    = document.querySelectorAll(".filtro");
+
+        // Salva o array inteiro no localStorage (Próximo Passo sugerido
+        // na análise anterior, aplicado aqui)
+        function salvar() {
+            localStorage.setItem("tarefas", JSON.stringify(tarefas));
+        }
+
+        // FUNÇÃO CENTRAL: recalcula a tela inteira a partir do array.
+        // Assim como atualizarDisplay() no Projeto 3, toda mudança de
+        // estado termina chamando esta função — nunca se mexe no DOM
+        // "na mão" fora daqui.
+        function renderizar() {
+            // 1) Filtra o array (Array.prototype.filter) conforme o filtro ativo
+            let visiveis = tarefas;
+            if (filtroAtual === "pendentes")  visiveis = tarefas.filter(function(t) { return !t.concluida; });
+            if (filtroAtual === "concluidas") visiveis = tarefas.filter(function(t) { return t.concluida; });
+
+            // 2) Limpa a lista e recria cada <li> a partir do array filtrado
+            //    (mesmo padrão createElement/appendChild do Projeto 5)
+            listaEl.innerHTML = "";
+
+            visiveis.forEach(function(tarefa) {
+                const li = document.createElement("li");
+                li.dataset.id = tarefa.id; // guarda o id no próprio elemento
+                li.className = "tarefa prioridade-" + tarefa.prioridade +
+                                (tarefa.concluida ? " concluida" : "");
+
+                const span = document.createElement("span");
+                span.className = "texto";
+                span.textContent = tarefa.texto;
+
+                const tag = document.createElement("span");
+                tag.className = "tag";
+                tag.textContent = tarefa.categoria;
+
+                const btnRemover = document.createElement("button");
+                btnRemover.className = "btn-remover";
+                btnRemover.textContent = "×";
+                btnRemover.setAttribute("aria-label", "Remover tarefa");
+
+                li.appendChild(span);
+                li.appendChild(tag);
+                li.appendChild(btnRemover);
+                listaEl.appendChild(li);
+            });
+
+            // 3) Contador calculado a partir do ARRAY, não do DOM
+            //    (no Projeto 5 o contador lia querySelectorAll(".concluida");
+            //    aqui o array já é a fonte da verdade, então basta contar nele)
+            const total      = tarefas.length;
+            const concluidas = tarefas.filter(function(t) { return t.concluida; }).length;
+
+            contadorEl.textContent = total === 0
+                ? "Nenhuma tarefa ainda"
+                : concluidas + " de " + total + " concluída(s) — " + (total - concluidas) + " pendente(s)";
+        }
+
+        // ADICIONAR TAREFA — validação com guard clause, como nos
+        // Projetos 1 e 4
+        function adicionarTarefa() {
+            const texto = inputTexto.value.trim();
+
+            if (texto === "") {
+                msgErro.textContent = "Digite uma tarefa antes de adicionar.";
+                inputTexto.classList.add("invalido");
+                return; // interrompe aqui, igual ao Projeto 2/4
+            }
+            msgErro.textContent = "";
+            inputTexto.classList.remove("invalido");
+
+            tarefas.push({
+                id: Date.now(),              // id simples e único o bastante para este esboço
+                texto: texto,
+                categoria: selectCategoria.value,
+                prioridade: selectPrioridade.value,
+                concluida: false
+            });
+
+            inputTexto.value = "";
+            inputTexto.focus();
+            salvar();
+            renderizar();
+        }
+
+        btnAdicionar.addEventListener("click", adicionarTarefa);
+        inputTexto.addEventListener("keydown", function(evento) {
+            if (evento.key === "Enter") adicionarTarefa();
+        });
+
+        // DELEGAÇÃO DE EVENTOS — um único listener no <ul> pai, em vez de
+        // um por tarefa (Refatoração 4.4 da análise anterior). Funciona
+        // porque todo clique dentro do <ul> "borbulha" até ele, e usamos
+        // evento.target para saber o que exatamente foi clicado.
+        listaEl.addEventListener("click", function(evento) {
+            const li = evento.target.closest("li");
+            if (!li) return;
+
+            const id = Number(li.dataset.id);
+            const tarefa = tarefas.find(function(t) { return t.id === id; });
+            if (!tarefa) return;
+
+            if (evento.target.classList.contains("btn-remover")) {
+                tarefas = tarefas.filter(function(t) { return t.id !== id; });
+            } else {
+                tarefa.concluida = !tarefa.concluida;
+            }
+
+            salvar();
+            renderizar();
+        });
+
+        // FILTROS — troca de estado simples, mesmo espírito do switch do
+        // Projeto 2, mas decidindo QUAL RENDERIZAÇÃO mostrar
+        botoesFiltro.forEach(function(botao) {
+            botao.addEventListener("click", function() {
+                botoesFiltro.forEach(function(b) { b.classList.remove("ativo"); });
+                botao.classList.add("ativo");
+                filtroAtual = botao.dataset.filtro;
+                renderizar();
+            });
+        });
+
+        // INÍCIO: renderiza o estado carregado do localStorage (ou vazio)
+        renderizar();
+    </script>
+
+</body>
+</html>
