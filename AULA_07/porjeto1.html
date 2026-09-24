@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 1 — Card de Perfil</title>
+    <style>
+        /* ══════════════════════════════════
+           RESET — Remove estilos padrão do navegador.
+           Sempre comece com isso!
+           ══════════════════════════════════ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;  /* width inclui padding e border */
+        }
+
+        /* ══════════════════════════════════
+           BODY — Centraliza o card na tela
+           usando Flexbox.
+           ══════════════════════════════════ */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;         /* 100% da altura da janela */
+
+            /* FLEXBOX para centralizar vertical + horizontal */
+            display: flex;
+            justify-content: center;   /* centraliza horizontalmente */
+            align-items: center;       /* centraliza verticalmente */
+        }
+
+        /* ══════════════════════════════════
+           CARD — O container principal.
+           Demonstra: width, padding, border-radius,
+           box-shadow, text-align.
+           ══════════════════════════════════ */
+        .card {
+            background: white;
+            width: 320px;              /* largura fixa */
+            padding: 2rem;             /* respiro interno (32px) */
+            border-radius: 16px;       /* cantos arredondados */
+            text-align: center;        /* centraliza o conteúdo */
+
+            /* SOMBRA: horizontal vertical blur spread cor */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ══════════════════════════════════
+           FOTO DO PERFIL — Círculo perfeito.
+           border-radius: 50% transforma qualquer
+           elemento quadrado em um círculo.
+           ══════════════════════════════════ */
+        .foto {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;        /* CÍRCULO! */
+            margin: 0 auto 1rem;       /* centraliza e adiciona espaço abaixo */
+
+            /* Borda decorativa ao redor da foto */
+            border: 4px solid #3498db;
+
+            /* Imagem de exemplo (substituir pela sua) */
+            background-image: url('https://media.licdn.com/dms/image/v2/D4D35AQGT66QSyPyD6w/profile-framedphoto-shrink_400_400/B4DaCToX_8I4AY-/0/1789183230327?e=1790812800&v=beta&t=u2uDqdBwdaB7Nt1OHiNYXYYEO-0m9fYwA9iwXRpRSJc');
+            background-size: cover;    /* preenche todo o espaço */
+            background-position: center;
+        }
+
+        /* ══════════════════════════════════
+           TEXTOS DO CARD
+           ══════════════════════════════════ */
+        .nome {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .cargo {
+            font-size: 0.9rem;
+            color: #7f8c8d;            /* cinza mais claro */
+            margin-bottom: 1.5rem;
+        }
+
+        /* ══════════════════════════════════
+           INFORMAÇÕES — Pequena lista de dados.
+           Usa border-top para separar visualmente.
+           ══════════════════════════════════ */
+        .info {
+            display: flex;             /* itens lado a lado */
+            justify-content: space-around; /* distribui igualmente */
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-numero {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: #95a5a6;
+            text-transform: uppercase;  /* TUDO MAIÚSCULO */
+            letter-spacing: 1px;
+        }
+
+        /* ══════════════════════════════════
+           BOTÃO — Demonstra transition para
+           animação suave no hover.
+           ══════════════════════════════════ */
+        .botao {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 32px;
+            border: none;
+            border-radius: 25px;       /* muito arredondado = "pílula" */
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;     /* remove sublinhado (é um <a>) */
+            cursor: pointer;
+
+            /* TRANSIÇÃO: anima todas as propriedades por 0.3s */
+            transition: all 0.3s ease;
+        }
+
+        /* Estado hover: quando o mouse passa por cima */
+        .botao:hover {
+            background-color: #2980b9; /* cor mais escura */
+            transform: translateY(-2px); /* sobe 2px */
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Foto circular -->
+        <div class="foto"></div>
+
+        <!-- Dados textuais -->
+        <div class="nome">Gustavo</div>
+        <div class="cargo">Universitario</div>
+
+        <!-- Estatísticas em linha (Flexbox) -->
+        <div class="info">
+            <div class="info-item">
+                <div class="info-numero">19</div>
+                <div class="info-label">Idade</div>
+            </div>
+            <div class="info-item">
+                <div class="info-numero">Backoffice</div>
+                <div class="info-label">Cargo</div>
+            </div>
+            <div class="info-item">
+                <div class="info-numero">ADS</div>
+                <div class="info-label">Curso</div>
+            </div>
+        </div>
+
+        <!-- Botão com hover animado -->
+        <a href="https://github.com/GustaVs00" class="botao"> "Github"</a>
+    <a href="https://linkedin.com/in/gustavo-vitorino-374377213" class="botao">"linkedln"</a>
+    </div>
+
+</body>
+</html>

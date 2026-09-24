@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 3 — Galeria de Imagens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a2e;    /* fundo escuro para contraste */
+            color: white;
+            padding: 2rem;
+        }
+
+        /* ══════════════════════════════════
+           TÍTULO DA PÁGINA
+           ══════════════════════════════════ */
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* ══════════════════════════════════
+           GALERIA — Grid flexível com flex-wrap.
+           Os itens se reorganizam automaticamente
+           conforme o tamanho da tela.
+           ══════════════════════════════════ */
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;           /* permite quebra de linha */
+            gap: 12px;                 /* espaço entre as imagens */
+            max-width: 1000px;
+            margin: 0 auto;           /* centraliza o container */
+        }
+
+        /* ══════════════════════════════════
+           ITEM DA GALERIA — Cada imagem.
+           flex: 1 1 250px significa:
+             1 = pode crescer
+             1 = pode encolher
+             250px = tamanho mínimo antes de quebrar linha
+           ══════════════════════════════════ */
+        .galeria-item {
+            flex: 1 1 250px;
+            height: 250px;
+            border-radius: 12px;
+
+            /* overflow: hidden impede que o zoom
+               da imagem "vaze" para fora do card */
+            overflow: hidden;
+
+            position: relative;        /* para posicionar o overlay */
+            cursor: pointer;
+        }
+
+        /* ══════════════════════════════════
+           IMAGEM — Preenche todo o card.
+           transition + transform criam o efeito
+           de zoom suave no hover.
+           ══════════════════════════════════ */
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;         /* preenche sem distorcer */
+            display: block;
+
+            /* Animação suave de 0.4 segundos */
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        /* HOVER: zoom + leve escurecimento */
+        .galeria-item:hover img {
+            transform: scale(1.08);    /* aumenta 8% */
+            opacity: 0.85;             /* leve escurecimento */
+        }
+
+        /* ══════════════════════════════════
+           OVERLAY — Texto que aparece no hover.
+           Fica invisível por padrão (opacity: 0)
+           e aparece suavemente no hover.
+           ══════════════════════════════════ */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+
+            /* Começa invisível */
+            opacity: 0;
+            transform: translateY(10px); /* deslocado para baixo */
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* No hover do item-pai, o overlay aparece */
+        .galeria-item:hover .overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .overlay h3 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .overlay p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* ══════════════════════════════════
+           RESPONSIVO — Em telas pequenas, cada
+           imagem ocupa a largura toda.
+           ══════════════════════════════════ */
+        @media (max-width: 600px) {
+            .galeria-item {
+                flex: 1 1 100%;        /* uma imagem por linha */
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Galeria de Fotos</h1>
+    <p class="subtitulo">Passe o mouse sobre as imagens para ver o efeito</p>
+
+    <div class="galeria">
+
+        <!-- Cada item: imagem + overlay com texto -->
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=1" alt="Paisagem 1">
+            <div class="overlay">
+                <h3>Montanhas</h3>
+                <p>Paisagem natural</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=2" alt="Paisagem 2">
+            <div class="overlay">
+                <h3>Floresta</h3>
+                <p>Natureza selvagem</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=3" alt="Paisagem 3">
+            <div class="overlay">
+                <h3>Oceano</h3>
+                <p>Vista para o mar</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=4" alt="Paisagem 4">
+            <div class="overlay">
+                <h3>Cidade</h3>
+                <p>Skyline urbano</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=5" alt="Paisagem 5">
+            <div class="overlay">
+                <h3>Deserto</h3>
+                <p>Dunas douradas</p>
+            </div>
+        </div>
+
+        <div class="galeria-item">
+            <img src="https://picsum.photos/500/500?random=6" alt="Paisagem 6">
+            <div class="overlay">
+                <h3>Aurora</h3>
+                <p>Luzes do norte</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
