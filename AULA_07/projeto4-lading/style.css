@@ -1,0 +1,285 @@
+/* ══ RESET GLOBAL ══ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ══ VARIÁVEIS CSS ══
+           Definimos as cores uma vez e reutilizamos.
+           Para mudar o esquema de cores inteiro,
+           basta alterar aqui!
+        */
+        :root {
+            --cor-primaria: #2c3e50;
+            --cor-secundaria: #3498db;
+            --cor-fundo: #f8f9fa;
+            --cor-texto: #333;
+            --cor-texto-claro: #777;
+            --cor-borda: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: var(--cor-texto);
+            line-height: 1.7;
+            background: var(--cor-fundo);
+        }
+
+        /* ══════════════════════════════════
+           HEADER — Fixo no topo.
+           ══════════════════════════════════ */
+        header {
+            background: var(--cor-primaria);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            height: 60px;
+
+            /* Sombra sutil abaixo do header */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .logo span { color: var(--cor-secundaria); }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 20px 16px;
+            font-size: 0.9rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ══════════════════════════════════
+           HERO — Seção de destaque.
+           Usa Flexbox para centralizar tudo,
+           com fundo gradiente.
+           ══════════════════════════════════ */
+        .hero {
+            background: linear-gradient(135deg, var(--cor-primaria), #1a252f);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 5rem;    /* mais padding-top por causa do header fixo */
+            min-height: 80vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 550px;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            background: var(--cor-secundaria);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* ══════════════════════════════════
+           SEÇÕES DE CONTEÚDO
+           ══════════════════════════════════ */
+        .secao {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .secao-titulo {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cor-primaria);
+            margin-bottom: 0.5rem;
+        }
+
+        .secao-sub {
+            text-align: center;
+            color: var(--cor-texto-claro);
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* ══════════════════════════════════
+           CARDS DE SERVIÇOS — Flex-wrap.
+           Cada card tem no mínimo 250px.
+           ══════════════════════════════════ */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .card {
+            flex: 1 1 250px;           /* cresce, encolhe, mínimo 250px */
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--cor-borda);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icone {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            color: var(--cor-primaria);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--cor-texto-claro);
+        }
+
+        /* ══════════════════════════════════
+           TABELA — Planos de preço.
+           ══════════════════════════════════ */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;           /* bordas arredondadas na tabela */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        th {
+            background: var(--cor-primaria);
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        tr:hover td {
+            background: #f0f7ff;       /* destaque leve no hover */
+        }
+
+        /* Destaque de coluna */
+        .destaque {
+            background: #ebf5fb;
+            font-weight: 600;
+        }
+
+        /* ══════════════════════════════════
+           FOOTER
+           ══════════════════════════════════ */
+        footer {
+            background: var(--cor-primaria);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--cor-secundaria);
+            text-decoration: none;
+        }
+
+        /* ══════════════════════════════════
+           RESPONSIVO — Mobile
+           ══════════════════════════════════ */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav a {
+                padding: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                display: block;
+            }
+
+            .hero {
+                padding: 10rem 1.5rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cards {
+                flex-direction: column;
+            }
+
+            /* Tabela rola horizontalmente em mobile */
+            .tabela-wrapper {
+                overflow-x: auto;
+            }
+        }
