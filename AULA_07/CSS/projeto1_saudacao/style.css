@@ -1,0 +1,140 @@
+/* ══════════════════════════════════
+   RESET — Remove estilos padrão do navegador.
+   Sempre comece com isso!
+   ══════════════════════════════════ */
+* {
+    margin: 0;
+    padding: 0;
+    /* Faz com que o cálculo de largura/altura (width/height) já inclua o padding e as bordas, evitando que o elemento "vaze" ou quebre o layout */
+    box-sizing: border-box;
+}
+
+/* ══════════════════════════════════
+   BODY — Centraliza o card na tela
+   usando Flexbox.
+   ══════════════════════════════════ */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f2f5;
+    /* min-height: 100vh garante que o body ocupe no mínimo 100% da altura visível da tela, fundamental para a centralização vertical funcionar */
+    min-height: 100vh;         
+
+    /* FLEXBOX para centralizar vertical + horizontal */
+    display: flex;
+    justify-content: center;   /* centraliza horizontalmente */
+    align-items: center;       /* centraliza verticalmente */
+}
+
+/* ══════════════════════════════════
+   CARD — O container principal.
+   Demonstra: width, padding, border-radius,
+   box-shadow, text-align.
+   ══════════════════════════════════ */
+.card {
+    background: white;
+    width: 320px;              /* largura fixa */
+    padding: 2rem;             /* respiro interno (32px) */
+    border-radius: 16px;       /* cantos arredondados */
+    text-align: center;        /* centraliza o conteúdo */
+
+    /* SOMBRA: eixo-x | eixo-y | desfoque(blur) | cor(com opacidade) */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ══════════════════════════════════
+   FOTO DO PERFIL — Círculo perfeito.
+   border-radius: 50% transforma qualquer
+   elemento quadrado em um círculo.
+   ══════════════════════════════════ */
+.foto {
+    width: 120px;
+    height: 120px;
+    /* Aplica arredondamento total, transformando o quadrado exato em um círculo */
+    border-radius: 50%;        
+    /* Margem automática nas laterais (auto) centraliza o elemento em bloco caso ele tenha largura fixa */
+    margin: 0 auto 1rem;       
+
+    /* Borda decorativa ao redor da foto */
+    border: 4px solid #3498db;
+
+    /* Imagem de exemplo injetada via CSS */
+    background-image: url('https://media.licdn.com/dms/image/v2/D4D35AQGT66QSyPyD6w/profile-framedphoto-shrink_400_400/B4DaCToX_8I4AY-/0/1789183230327?e=1790812800&v=beta&t=u2uDqdBwdaB7Nt1OHiNYXYYEO-0m9fYwA9iwXRpRSJc');
+    /* cover instrui a imagem a cobrir todo o espaço da div, recortando as sobras sem distorcer a proporção */
+    background-size: cover;    
+    background-position: center;
+}
+
+/* ══════════════════════════════════
+   TEXTOS DO CARD
+   ══════════════════════════════════ */
+.nome {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+}
+
+.cargo {
+    font-size: 0.9rem;
+    color: #7f8c8d;            /* cinza mais claro */
+    margin-bottom: 1.5rem;
+}
+
+/* ══════════════════════════════════
+   INFORMAÇÕES — Pequena lista de dados.
+   Usa border-top para separar visualmente.
+   ══════════════════════════════════ */
+.info {
+    display: flex;             /* Coloca os três itens em linha horizontal */
+    /* space-around distribui o espaço restante igualmente entre os itens, incluindo as pontas */
+    justify-content: space-around; 
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    text-align: center;
+}
+
+.info-numero {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    color: #95a5a6;
+    text-transform: uppercase;  /* Força todas as letras a ficarem maiúsculas */
+    letter-spacing: 1px;
+}
+
+/* ══════════════════════════════════
+   BOTÃO — Demonstra transition para
+   animação suave no hover.
+   ══════════════════════════════════ */
+.botao {
+    /* inline-block permite que o elemento <a> respeite margens e paddings como um bloco, mas continue fluindo no texto */
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 32px;
+    border: none;
+    border-radius: 25px;       /* muito arredondado = "pílula" */
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;     /* remove sublinhado padrão dos links */
+    cursor: pointer;
+
+    /* TRANSIÇÃO: suaviza a mudança de QUALQUER propriedade (all) alterada no estado :hover durante 0.3 segundos */
+    transition: all 0.3s ease;
+}
+
+/* Estado hover: ativado quando o cursor do mouse passa por cima do botão */
+.botao:hover {
+    background-color: #2980b9; 
+    /* translateY desloca o botão sutilmente para cima no eixo Y sem alterar o layout dos elementos ao redor */
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}

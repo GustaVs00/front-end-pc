@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- A tag viewport é essencial para garantir a responsividade em dispositivos móveis, ajustando a escala inicial -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlog — Tecnologia e Inovação</title>
+    <meta name="description" content="Blog sobre tecnologia, programação e inovação digital.">
+    
+    <!-- O uso de 'preconnect' melhora a performance, antecipando a conexão com os servidores do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <h1>TechBlog<span class="dot">.</span></h1>
+            <p class="slogan">Explorando o futuro da tecnologia</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <!-- Links com '#' (âncoras) direcionam para as seções correspondentes na mesma página -->
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#destaques">Destaques</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero-section">
+            <div class="hero-text">
+                <h2>Bem-vindos ao futuro</h2>
+                <p>
+                    Aqui você encontra artigos sobre <strong>desenvolvimento web</strong>,
+                    <em>inteligência artificial</em> e as últimas tendências do
+                    mercado de tecnologia.
+                </p>
+            </div>
+            <!-- O uso de <figure> e <figcaption> é uma boa prática semântica para agrupar imagens e suas legendas -->
+            <figure class="hero-figure">
+                <div class="image-placeholder">
+                    <span>{ image: banner-tech.jpg }</span>
+                </div>
+                <figcaption>O futuro é construído com código.</figcaption>
+            </figure>
+        </section>
+
+        <section id="destaques">
+            <div class="section-header">
+                <h2>Artigos em Destaque</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="articles-grid">
+                <article class="card">
+                    <span class="tag">IA Generativa</span>
+                    <h3>O Impacto da IA em 2026</h3>
+                    <p>
+                        A inteligência artificial generativa transformou a forma como
+                        criamos conteúdo, código e design. Neste artigo, analisamos
+                        os principais avanços.
+                    </p>
+                    <a href="#ia" class="btn">Leia mais &rarr;</a>
+                </article>
+
+                <article class="card">
+                    <span class="tag">Front-End</span>
+                    <h3>HTML5 e CSS3: Guia Iniciante</h3>
+                    <p>
+                        Tudo que você precisa saber para começar a construir
+                        páginas web modernas, semânticas e altamente responsivas.
+                    </p>
+                    <a href="#html" class="btn">Leia mais &rarr;</a>
+                </article>
+
+                <article class="card">
+                    <span class="tag">Carreira</span>
+                    <h3>5 Ferramentas Essenciais</h3>
+                    <ol class="custom-list">
+                        <li>VS Code</li>
+                        <li>Git & GitHub</li>
+                        <li>DevTools</li>
+                        <li>Figma</li>
+                        <li>Assistentes IA</li>
+                    </ol>
+                    <a href="#ferramentas" class="btn">Leia mais &rarr;</a>
+                </article>
+            </div>
+
+            <div class="detail-stack">
+                <article id="ia" class="detail-card">
+                    <span class="tag">IA Generativa</span>
+                    <h3>O futuro da criatividade em 2026</h3>
+                    <p>
+                        A IA deixou de ser apenas um experimento técnico e virou uma ferramenta
+                        estratégica para criação, automação e produtividade. A grande diferença
+                        hoje é a combinação entre criatividade humana e automação inteligente.
+                    </p>
+                </article>
+
+                <article id="html" class="detail-card">
+                    <span class="tag">Front-End</span>
+                    <h3>Estrutura e estilo em sintonia</h3>
+                    <p>
+                        HTML organiza o conteúdo e CSS cuida da aparência, do layout e da
+                        experiência visual. Quando os dois trabalham juntos de forma correta,
+                        a página se torna clara, moderna e acessível.
+                    </p>
+                </article>
+
+                <article id="ferramentas" class="detail-card">
+                    <span class="tag">Carreira</span>
+                    <h3>Ferramentas que aceleram o aprendizado</h3>
+                    <p>
+                        VS Code, GitHub, DevTools e Figma ajudam a escrever melhor, colaborar
+                        mais facilmente e transformar ideias em produtos mais profissionais.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="sobre" class="content-section">
+            <div class="section-header">
+                <h2>Sobre o TechBlog</h2>
+                <div class="divider"></div>
+            </div>
+            <p class="lead-text">
+                O TechBlog nasceu em <strong>2026</strong> com a missão de
+                democratizar o conhecimento. Somos uma equipe apaixonada por código e inovação.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <!-- <thead> e <tbody> separam de forma lógica o cabeçalho e o corpo da tabela, melhorando a acessibilidade -->
+                    <thead>
+                        <tr>
+                            <th>Membro</th>
+                            <th>Área principal</th>
+                            <th>Experiência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ana Costa</strong></td>
+                            <td>Front-End</td>
+                            <td><span class="badge">5 anos</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carlos Lima</strong></td>
+                            <td>Back-End</td>
+                            <td><span class="badge">7 anos</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="contato" class="content-section">
+            <div class="section-header">
+                <h2>Conecte-se</h2>
+                <div class="divider"></div>
+            </div>
+            <p>Tem sugestões ou quer contribuir? Fale conosco através dos nossos canais:</p>
+            
+            <ul class="contact-list">
+                <li>
+                    <span class="contact-icon">✉️</span>
+                    <!-- O esquema 'mailto:' abre o cliente de email padrão do usuário -->
+                    <a href="mailto:contato@techblog.com">contato@techblog.com</a>
+                </li>
+                <li>
+                    <span class="contact-icon">💻</span>
+                    <!-- 'target="_blank"' abre o link em uma nova aba do navegador -->
+                    <a href="https://github.com/techblog" target="_blank">github.com/techblog</a>
+                </li>
+                <li>
+                    <span class="contact-icon">📱</span>
+                    <!-- O esquema 'tel:' permite que o usuário faça a ligação diretamente ao clicar (em dispositivos móveis) -->
+                    <a href="tel:+5511999999999">(11) 99999-9999</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h2>TechBlog<span class="dot">.</span></h2>
+            <p>&copy; 2026 — Disciplina de Front-End</p>
+            <p><small>Desenvolvido com semântica, acessibilidade e design moderno.</small></p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- A tag viewport é essencial para garantir o ajuste de escala inicial em dispositivos móveis, sendo a base da responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 1 — Card de Perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Container principal que encapsula todo o componente visual -->
+    <div class="card">
+        <!-- Div vazia estrutural: a imagem real será injetada aqui via CSS (background-image), facilitando o controle de proporções -->
+        <div class="foto"></div>
+
+        <!-- Dados textuais -->
+        <div class="nome">Gustavo</div>
+        <div class="cargo">Universitario</div>
+
+        <!-- Estatísticas estruturadas para serem alinhadas horizontalmente via Flexbox no arquivo CSS -->
+        <div class="info">
+            <div class="info-item">
+                <div class="info-numero">19</div>
+                <div class="info-label">Idade</div>
+            </div>
+            <div class="info-item">
+                <div class="info-numero">Backoffice</div>
+                <div class="info-label">Cargo</div>
+            </div>
+            <div class="info-item">
+                <div class="info-numero">ADS</div>
+                <div class="info-label">Curso</div>
+            </div>
+        </div>
+
+        <!-- Botões construídos com a tag <a> (âncora) para manter a semântica de link, mas estilizados como botões interativos -->
+        <a href="https://github.com/GustaVs00" class="botao"> "Github"</a>
+        <a href="https://linkedin.com/in/gustavo-vitorino-374377213" class="botao">"linkedln"</a>
+    </div>
+
+</body>
+</html>
