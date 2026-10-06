@@ -1,0 +1,102 @@
+/* Configuração geral para um visual limpo */
+body {
+    margin: 0;
+    /* 'min-height: 100vh' combinado com flexbox garante que o conteúdo fique perfeitamente centralizado vertical e horizontalmente na tela */
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    /* 'box-sizing: border-box' impede que paddings e borders aumentem o tamanho total definido para o elemento */
+    box-sizing: border-box;
+}
+
+main {
+    width: 100%;
+    max-width: 520px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #002b5c;
+}
+
+/* O corpo do nosso formulário com a cor primária Cruzeiro */
+form {
+    background-color: #002b5c; /* Azul Escuro Institucional */
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    /* O 'gap' aplica espaçamento uniforme entre os elementos filhos do form sem a necessidade de usar margens individuais */
+    gap: 22px;
+}
+
+fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 18px 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+legend {
+    padding: 0 8px;
+    font-weight: 700;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* Deixando as caixas de texto mais modernas */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Feedback visual: quando o aluno clica na caixa */
+/* A pseudo-classe ':focus' é ativada quando o usuário interage com o campo (via clique ou tecla Tab), sendo essencial para a acessibilidade visual */
+input:focus,
+textarea:focus,
+select:focus {
+    /* 'outline' difere da borda por não ocupar espaço no layout, evitando que a página dê "saltos" ao receber o foco */
+    outline: 3px solid #ffcc00; /* Amarelo Suave para foco e acessibilidade */
+    background-color: #fffef0;
+}
+
+/* Botão em destaque Amarelo Suave */
+button {
+    background-color: #ffcc00;
+    color: #002b5c;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    /* Define o tempo da animação que ocorrerá quando estados como :hover ou :focus forem ativados */
+    transition: 0.3s; /* Suaviza a troca de cor */
+    margin-top: 6px;
+}
+
+/* Interatividade: reação gentil ao passar o mouse */
+button:hover {
+    background-color: #e6b800; /* Tom de ouro levemente mais intenso */
+    /* 'transform: scale' cria um efeito de aumento visual em 2% sem alterar o espaço ocupado pelo botão no DOM */
+    transform: scale(1.02); /* Pequeno pulso de feedback */
+}

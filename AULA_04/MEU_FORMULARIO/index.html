@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro voluntario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <h1>Junte-se à nossa Causa</h1>
+
+    <!-- O method="post" é utilizado para enviar dados de forma mais segura, não expondo as informações na URL -->
+    <form method="post">
+        
+        <!-- O <fieldset> agrupa elementos de formulário relacionados, sendo excelente para organização visual e acessibilidade em leitores de tela -->
+        <fieldset>
+            <!-- A <legend> atua como um título descritivo para o grupo criado pelo <fieldset> -->
+            <legend>Informações Pessoais</legend>
+
+            <div>
+                <!-- O atributo 'for' na label deve ser igual ao 'id' do input, o que permite focar no campo ao clicar no texto da label -->
+                <label for="nome">Nome Completo:</label>
+                <!-- O atributo 'required' delega ao navegador a validação nativa, impedindo o envio do formulário se o campo estiver vazio -->
+                <input type="text" id="nome" name="nome" required placeholder="Ex: Maria Silva">
+            </div>
+
+            <div>
+                <label for="email">E-mail de Contato:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Sua Contribuição</legend>
+
+            <div>
+                <label for="area">Área de Interesse:</label>
+                <select id="area" name="area">
+                    <!-- O <optgroup> cria categorias agrupadas dentro do menu dropdown, facilitando a navegação em listas longas -->
+                    <optgroup label="Educação">
+                        <option value="reforco">Reforço Escolar</option>
+                        <option value="artes">Oficina de Artes</option>
+                    </optgroup>
+                    <optgroup label="Saúde">
+                        <option value="apoio">Apoio Emocional</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div>
+                <label for="motivo">Por que você quer se unir a nós?</label>
+                <textarea id="motivo" name="motivo" rows="4" required placeholder="Conte-nos um pouco sobre sua motivação..."></textarea>
+            </div>
+        </fieldset>
+
+        <button type="submit">Enviar Cadastro de Impacto</button>
+    </form>
+</main>
+</body>
+</html>
